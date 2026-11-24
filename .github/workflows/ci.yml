@@ -8,9 +8,39 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 permissions:
   contents: read
+env:
+  CARGO_TERM_COLOR: always
 jobs:
-  rust:
-    uses: isonomic-org/.github/.github/workflows/rust-ci.yml@main
-    secrets: inherit
-    with:
-      toolchain: "1.97"
+  check:
+    name: rust / fmt, clippy, test (ubuntu-latest)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: "1.97"
+          components: rustfmt, clippy
+      - uses: Swatinem/rust-cache@v2
+      - name: Format
+        run: cargo fmt --all --check
+      - name: Clippy
+        run: cargo clippy --workspace --all-targets --all-features --locked -- -D warnings
+      - name: Test
+        run: cargo test --workspace --all-features --locked
+      - name: Commitments
+        run: cargo run --locked -p claims-check -- docs/commitments.md
+  hygiene:
+    name: rust / file sizes and names
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Source and doc files stay under 20 KB
+        run: |
+          big=$(git ls-files -z -- '*.rs' '*.md' '*.toml' '*.yml' '*.yaml' '*.json' | xargs -0 -r wc -c | awk '$2 != "total" && $1 > 20480 {print}')
+          if [ -n "$big" ]; then
+            echo "::error::files over 20480 bytes:"
+            echo "$big"
+            exit 1
+          fi
