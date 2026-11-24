@@ -95,7 +95,7 @@ The model itself pursues a goal other than the user's.
 - **Confinement.** Inside a Cell it holds no secrets, has no network beyond what the user allowed, and its authority only narrows. (Cells 2, 4, 5, 6)
 - **Crash isolation.** A panic or hang in one session never affects the engine or other sessions. (Agent stack 15)
 - **A record.** Every session is kept in an append-only log. (Agent stack 11)
-- **No route out of a local model server.** The model server listens on loopback only, with a fresh port and a random secret at every launch, and a child environment built from an allow-list. (Inference 2, 3; Desktop 7)
+- **A model server only the engine can reach.** The local model server listens on loopback only, with a fresh port and a random secret at every launch, and starts with an environment built from an allow-list. (Inference 2, 3; Desktop 7)
 
 Nothing else bounds a misaligned model. Isonomic does not make models aligned.
 
