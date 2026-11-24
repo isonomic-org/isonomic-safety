@@ -1,0 +1,7 @@
+[package]
+name = "claims-check"
+version = "0.1.0"
+description = "Checks that every planned commitment in docs/commitments.md carries a date."
+edition.workspace = true
+license.workspace = true
+publish = false
