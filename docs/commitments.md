@@ -29,6 +29,8 @@ Nothing yet.
 
 These are decided in a record but not yet built, and the record leaves their release to the launch plan. They move to **in the build** when work starts, and to **planned** only when they have a date.
 
+Rows citing *Tool kits: architecture v0.3* come from that design, which is approved for building but is not yet a decision record in a product repository. Isonomic Search is not listed: it waits on a decision record for the hosted service.
+
 | Commitment | Source |
 | --- | --- |
 | Memory is data, never authority: it cannot change policy, approvals, budgets, tools or presets. | Memory 2 |
@@ -37,6 +39,16 @@ These are decided in a record but not yet built, and the record leaves their rel
 | Every memory write is announced with Undo, and no app, preset or View can turn the notice off. | Memory 13 |
 | Memory is never sent to a remote model unless the user turns that on. | Memory 10 |
 | Secrets, payment and ID numbers, raw tool or web content, and the model's inferences about the user are never stored as memory. | Memory 14 |
+| Agents reach only folders the user links in the window. The Capsule directory, key stores, other apps' data, system folders and the whole home folder can never be linked. | Tool kits: architecture v0.3, Trust boundary |
+| The model cannot cause a permission question. A tool with no grant is not offered. | Tool kits: architecture v0.3, Who can ask the person for a permission |
+| File contents count as untrusted content. | Tool kits: architecture v0.3, Decisions |
+| Every file change an agent makes can be undone, or it asks every time. | Tool kits: architecture v0.3, Files |
+| Once a session has read private data and untrusted content, every outward call asks. Nothing is remembered for code, for such a call, or for a change that cannot be undone. | Tool kits: architecture v0.3, How a call is decided; Standing permissions |
+| On the host, every command asks, shows the whole command and is never remembered. It runs only inside the system sandbox, which closes the engine's socket; if the sandbox cannot be applied, it does not run. Interactive sessions only. | Tool kits: architecture v0.3, Decisions; Shell and processes |
+| Nothing leaves the device for web access until the user answers one question per app. Every web call is logged. | Tool kits: architecture v0.3, Decisions |
+| The browser uses a throwaway profile with none of the user's cookies or sign-ins. An action on a site asks until the user allows that site for the session, and never for good. | Tool kits: architecture v0.3, Decisions; Browser |
+| Computer control runs only inside a Cell, never on the user's real desktop. | Tool kits: architecture v0.3, Decisions |
+| A skill is data, never authority. Its scripts run as commands, with the same approvals. Only a person installs or enables a skill. There is no public skill marketplace. | Tool kits: architecture v0.3, Decisions; Isonomic Skills |
 
 ## Planned
 
@@ -53,4 +65,7 @@ Nothing is planned until it has a date.
 - **A compromised device is out of scope.** Malware running as the user can do what the user can do.
 - **The hypervisor is trusted** for Cells, and actions on the user's real desktop are outside the Cell model.
 - **Text the user pastes counts as the user's own words** for the memory evidence rule.
+- **A host command is not contained.** The sandbox stops writes outside granted folders, closes the engine's socket and limits the network. It does not stop a command from reading most of what the user can read.
+- **Web access sends data off the device.** Once the user turns it on, addresses and search text leave the device. Models stay local.
+- **Search is a private relay, not private search.** The provider reads every query, the query text can identify the user, and the provider's promise not to keep queries is a contract Isonomic cannot verify.
 - **Untested is not proven.** Until the agent-control evaluation publishes results, the controls above are designs and code, not measured protection.

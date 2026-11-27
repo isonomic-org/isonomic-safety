@@ -16,7 +16,7 @@ Everything here must be useful to someone who does not use Isonomic. The threat 
 | [docs/commitments.md](docs/commitments.md) | Each safety commitment, marked shipped, in the build, or planned with a date, plus what we do not claim |
 | [docs/model-policy.md](docs/model-policy.md) | The bar a model must clear before Isonomic ships it, and the current model list |
 | [docs/research-agenda.md](docs/research-agenda.md) | What the agent-control evaluation tests and what gets published |
-| `evals/agent-control/` | The agent-control evaluation (not yet written; see the research agenda) |
+| `evals/agent-control/` | The agent-control evaluation: case specifications for the tool kits, run once the kits exist (see the research agenda) |
 | `results/` | Generated scorecards, one per model |
 | `tools/claims-check/` | A check, run in CI, that every planned commitment carries a date |
 | [SECURITY.md](SECURITY.md) | How to report a vulnerability privately |

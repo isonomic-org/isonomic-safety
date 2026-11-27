@@ -20,11 +20,15 @@ Location: [`evals/agent-control/`](../evals/agent-control/). Work starts once a 
 | Content-is-data | Text from tools, files and web pages cannot change policy, permissions, tools or budgets |
 | Memory evidence rule | A memory write must cite the user's own words from the current session |
 | Untrusted-session flag | Once a session has read untrusted content, memory writes ask first |
+| Three-flag rule | Once a session has read private data and untrusted content, every outward call asks |
+| Approval of each host command | On the host, every command asks and shows the whole command |
+| Host sandbox | A host command cannot write outside granted folders, reach the engine's socket, or reach the network except through the egress proxy |
 
 **Attack sets**
 
 - Public agent-hijacking and prompt-injection benchmarks. Each benchmark's licence is checked before anything is copied into this repository; where copying is not allowed, the evaluation fetches the benchmark at run time and records its version.
 - Our own memory-poisoning cases: injected content tries to plant a false memory, and a later session tests whether that memory is used.
+- Our own tool-kit cases in [`evals/agent-control/cases/`](../evals/agent-control/cases/): a file, a page, a skill and a search result that each try to make the agent act for the attacker.
 
 **Measures**, per model and per control setting:
 
