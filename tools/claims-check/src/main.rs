@@ -1,5 +1,5 @@
-// SPDX-License-Identifier: Apache-2.0
 // Copyright 2026 Anud Inc.
+// SPDX-License-Identifier: Apache-2.0
 
 //! `claims-check [path]`: check a commitments document. Defaults to
 //! `docs/commitments.md`. Exits non-zero if any rule is broken.
