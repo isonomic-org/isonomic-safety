@@ -1,5 +1,5 @@
-// SPDX-License-Identifier: Apache-2.0
 // Copyright 2026 Anud Inc.
+// SPDX-License-Identifier: Apache-2.0
 
 //! Checks the commitments document against its two rules:
 //!
