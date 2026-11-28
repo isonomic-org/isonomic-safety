@@ -34,4 +34,4 @@ cargo run -p claims-check -- docs/commitments.md
 
 ## Licence
 
-Apache-2.0. See [LICENSE](LICENSE) and [NOTICE](NOTICE). Copyright 2026 Anud Inc.
+GPL-3.0-or-later. See [LICENSE](LICENSE) and [NOTICE](NOTICE). Copyright 2026 Anud Inc.
